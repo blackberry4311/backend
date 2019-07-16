@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.platform.papafood.models.UserModel" table="users">
+        <id name="id" type="java.lang.String" column="id">
+            <generator class="org.hibernate.id.UUIDGenerator"/>
+        </id>
+
+        <property name="email" type="java.lang.String" column="email"/>
+        <property name="password" type="java.lang.String" column="password"/>
+        <property name="phone" type="java.lang.String" column="phone"/>
+        <property name="userName" type="java.lang.String" column="user_name"/>
+        <property name="fullName" type="java.lang.String" column="full_name"/>
+
+        <set name="roleModels" table="users_roles" lazy="false" fetch="subselect" cascade="delete">
+            <key column="user_id"/>
+            <many-to-many column="role_id" entity-name="com.platform.papafood.models.RoleModel"/>
+        </set>
+    </class>
+</hibernate-mapping>

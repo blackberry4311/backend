@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.platform.papafood.models.MenuModel" table="menus">
+        <id name="id" type="java.lang.String" column="id">
+            <generator class="org.hibernate.id.UUIDGenerator"/>
+        </id>
+
+        <property name="name" type="java.lang.String" column="name"/>
+        <property name="date" type="date" column="date"/>
+
+        <set name="foodModels" table="menus_foods" lazy="false" fetch="subselect" cascade="delete">
+            <key column="menu_id"/>
+            <many-to-many column="food_id" entity-name="com.platform.papafood.models.FoodModel"/>
+        </set>
+
+        <property name="createdAt" column="created_at" not-null="true" type="java.util.Date" insert="true"
+                  update="false"/>
+        <property name="updatedAt" column="updated_at" not-null="false" type="java.util.Date"/>
+    </class>
+</hibernate-mapping>

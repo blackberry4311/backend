@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: "jdbc:mysql://${DB_SERVER_HOST:localhost}:${DB_SERVER_PORT:3306}/papafood?useSSL=false&allowPublicKeyRetrieval=true"
+    username: "${DB_SERVER_USERNAME:root}"
+    password: "${DB_SERVER_PASSWORD:root}"
+  jpa:
+    show-sql: true
+    properties.hibernate.format_sql: true #FIXME I would like to use hibernate/jpa here
